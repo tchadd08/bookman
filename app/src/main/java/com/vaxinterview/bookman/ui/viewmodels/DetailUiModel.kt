@@ -1,6 +1,6 @@
 package com.vaxinterview.bookman.ui.viewmodels
 
-data class BookUiModel (
+data class DetailUiModel (
     val id: Long,
     val titleDisplay: String,
     val authorDisplay: String,

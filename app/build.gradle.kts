@@ -4,6 +4,11 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.hilt.plugin)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.room.plugin)
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
 android {
@@ -18,7 +23,6 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -52,6 +56,9 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.ui.test.junit4)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -63,11 +70,15 @@ dependencies {
 
     //Hilt (DI) dependencies
     implementation(libs.hilt.android)
+    implementation(libs.hilt.nav)
+    androidTestImplementation(libs.hilt.testing)
     ksp(libs.hilt.compiler)
 
-    //Retrofit2 for service call to library  json
+    //Retrofit2 for service calls and moshi for mapping (swapped out gson for moshi due to date thread safety)
     implementation(libs.retrofit)
-    implementation(libs.retrofit.gson)
+    implementation(libs.retrofit.moshi)
+    implementation(libs.moshi.core)
+    ksp(libs.moshi.kotlin.codegen)
 
     //Room db for local cache and source of truth
     implementation(libs.room)
