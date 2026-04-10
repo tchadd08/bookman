@@ -4,6 +4,7 @@
   <ul style="display: inline-block; text-align: left;">
     <li>Offline first approach with RoomDB as local data holder</li>
     <li>DI with Hilt</li>
+    <li>Retrofit2 for services</li>
     <li>Jetpack Compose with State management</li>
     <li>Kotlin</li>
     <li>MVVM</li>
